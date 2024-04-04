@@ -61,5 +61,5 @@ This project is licensed under the MIT License.
 
 ## Link: 
 
-Link to github repository: https://github.com/Ayodeji3112/svggenerator
+Link to github repository: https://github.com/Ayodeji3112/dejilawalnotemaker
 Link to deployed repository: https://dejilawalnotemaker.onrender.com

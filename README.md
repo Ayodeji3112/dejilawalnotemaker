@@ -61,5 +61,5 @@ This project is licensed under the MIT License.
 
 ## Link: 
 
-Link to github repository: https://github.com/Ayodeji3112/dejilawalnotemaker
-Link to deployed repository: https://dejilawalnotemaker.onrender.com
+1. Link to github repository: https://github.com/Ayodeji3112/dejilawalnotemake
+2. Link to deployed repository: https://dejilawalnotemaker.onrender.com

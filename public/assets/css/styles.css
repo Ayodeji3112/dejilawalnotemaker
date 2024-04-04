@@ -9,6 +9,34 @@ body {
   display: none;
 }
 
+
+.note-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+
+
+.note-text-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%; /* Adjust as needed */
+}
+
+
+
+
+.delete-note {
+  color: red; /* This sets the icon color to red */
+  cursor: pointer; /* Changes the cursor to indicate it's clickable */
+  margin-left: 1rem; /* Gives space between the text and delete icon */
+
+}
+
+
 .icons {
   margin-left: 15px;
   margin-right: 15px;

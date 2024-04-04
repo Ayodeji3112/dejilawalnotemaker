@@ -89,29 +89,44 @@ const handleNewNoteView = () => {
   renderActiveNote();
 };
 
+
 const renderNoteList = async (notesResponse) => {
   const noteList = document.querySelector('.list-container .list-group');
   let jsonNotes = await notesResponse.json();
-  noteList.innerHTML = '';
+  noteList.innerHTML = '';  // Clears the current list
+
   jsonNotes.forEach((note) => {
     const liEl = document.createElement('li');
-    liEl.classList.add('list-group-item');
-    liEl.dataset.note = JSON.stringify(note);
-    liEl.dataset.noteId = note.id;
+    liEl.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
 
-    const spanEl = document.createElement('span');
-    spanEl.classList.add('list-item-title');
-    spanEl.innerText = note.title; // Display only the note title in the list
-    liEl.appendChild(spanEl);
+    const noteText = document.createElement('span');
+    noteText.classList.add('note-text-content');
 
-    const delBtnEl = document.createElement('i');
-    delBtnEl.classList.add('fas', 'fa-trash-alt', 'float-right', 'text-danger', 'delete-note');
-    delBtnEl.addEventListener('click', (e) => handleNoteDelete(e, note.id));
-    liEl.appendChild(delBtnEl);
+    // Clean the title and text, making sure it's a string and trim it.
+    const trimmedTitle = note.title && typeof note.title === 'string' ? note.title.trim() : '';
+    const trimmedText = note.text && typeof note.text === 'string' ? note.text.trim() : '';
 
-    noteList.appendChild(liEl);
+    // Set the text content only if both title and text are present
+    if (trimmedTitle && trimmedText) {
+      noteText.textContent = `${trimmedTitle} ${trimmedText}`;
+    }
+
+    // Append the note text to the list item only if we have set its text content
+    if (noteText.textContent) {
+      liEl.appendChild(noteText);
+
+      const delBtnEl = document.createElement('i');
+      delBtnEl.classList.add('fas', 'fa-trash-alt', 'ml-auto', 'delete-note');
+      delBtnEl.addEventListener('click', (e) => handleNoteDelete(e, note.id));
+      liEl.appendChild(delBtnEl);
+
+      noteList.appendChild(liEl);
+    }
   });
 };
+
+
+
 
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
@@ -126,19 +141,55 @@ const checkSaveButtonVisibility = () => {
   }
 };
 
+
+function updateSaveButtonVisibility() {
+  const noteTitle = document.querySelector('.note-title');
+  const noteText = document.querySelector('.note-textarea');
+  const saveNoteBtn = document.querySelector('.save-note');
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const noteTitle = document.querySelector('.note-title');
+    const noteText = document.querySelector('.note-textarea');
+  
+    // Event listeners for input fields
+    noteTitle.addEventListener('input', updateSaveButtonVisibility);
+    noteText.addEventListener('input', updateSaveButtonVisibility);
+  
+    // Call the function on page load to set the initial state of the save button
+    updateSaveButtonVisibility();
+  });
+
+  if (noteTitle.value.trim() || noteText.value.trim()) {
+    show(saveNoteBtn);
+  } else {
+    saveNoteBtn.style.display = 'none'; // Hide if there's no input.
+  }
+}
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const noteTitle = document.querySelector('.note-title');
   const noteText = document.querySelector('.note-textarea');
   const saveNoteBtn = document.querySelector('.save-note');
   const newNoteBtn = document.querySelector('.new-note');
   const clearBtn = document.querySelector('.clear-btn');
+  const clearNoteBtn = document.querySelector('.clear-note');
+
 
   noteTitle.addEventListener('keyup', checkSaveButtonVisibility);
   noteText.addEventListener('keyup', checkSaveButtonVisibility);
-
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   clearBtn.addEventListener('click', handleNewNoteView);
 
   getAndRenderNotes();
 });
+
+
+
+
+

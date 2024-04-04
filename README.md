@@ -56,9 +56,10 @@ This project is licensed under the MIT License.
 
 <img width="1512" alt="Screenshot 2024-04-04 at 21 08 37" src="https://github.com/Ayodeji3112/dejilawalnotemaker/assets/154736913/510a441f-913c-4176-bc1c-d61c69417d9f">
 <img width="1512" alt="Screenshot 2024-04-04 at 21 09 36" src="https://github.com/Ayodeji3112/dejilawalnotemaker/assets/154736913/e056ed27-8265-4445-be6f-1782a6854de8">
+```
 
 
-
+## Link: 
 
 Link to github repository: https://github.com/Ayodeji3112/svggenerator
 Link to deployed repository: https://dejilawalnotemaker.onrender.com
